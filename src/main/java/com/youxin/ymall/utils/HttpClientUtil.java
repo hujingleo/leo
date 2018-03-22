@@ -22,8 +22,6 @@ import org.apache.http.params.CoreProtocolPNames;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.youxin.ymall.service.AppUserService;
-
 public class HttpClientUtil {
 
 	private static Logger log = LoggerFactory.getLogger(HttpClientUtil.class);

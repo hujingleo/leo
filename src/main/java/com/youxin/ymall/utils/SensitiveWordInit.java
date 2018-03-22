@@ -1,19 +1,9 @@
 package com.youxin.ymall.utils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.youxin.ymall.dao.PyqPmdMapper;
-import com.youxin.ymanage.service.PyqPmdAndKeyFilterService;
 
 /**
  * @Description: 初始化敏感词库，将敏感词加入到HashMap中，构建DFA算法模型
