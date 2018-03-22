@@ -1,0 +1,1104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youxin.ymall.dao.AppUserMapper">
+  <resultMap type="com.youxin.ymall.domain.AppUserWithFactory" id="BaseResult">
+  	<id property="username" column="username"/>
+                                  
+                                         <result  property="version" column="version"/>
+                                         <result  property="location_id" column="location_id"/>
+                                         
+                                            <result  property="password" column="password"/>
+                                         <result  property="name" column="name"/>
+                                         <result  property="points" column="points"/>
+                                         <result  property="points_converted" column="points_converted"/>
+                                         <result  property="points_earned" column="points_earned"/>
+                                         <result  property="status" column="status"/>
+                                         <result  property="salt" column="salt"/>
+                                         <result  property="gender" column="gender"/>
+                                         <result  property="email" column="email"/>
+                                         <result  property="modified_datetime" column="modified_datetime"/>
+                                         <result  property="created_datetime" column="created_datetime"/>
+                                         <result  property="last_login" column="last_login"/>
+                                         <result  property="help_recharge" column="help_recharge"/>
+                                         <result  property="bind_mobile" column="bind_mobile"/>
+                                         <result  property="mobile" column="mobile"/>
+                                         <result  property="template_name" column="template_name"/>
+                                         <result  property="memshipdate" column="memshipdate"/>
+                                         <result  property="viptype" column="viptype"/>
+                                         <result  property="usertype" column="viptype"/>
+                                         <result  property="factoryname" column="factoryname"/>
+                 </resultMap>
+   
+  <insert id="add" parameterType="com.youxin.ymall.entity.AppUser" >
+    insert into t_wifi_user(
+    						username,        
+                               version,          
+                               location_id,          
+                               password,          
+                               name,          
+                               points,          
+                               points_converted,          
+                               points_earned,          
+                               status,          
+                               salt,          
+                               gender,          
+                               email,          
+                               modified_datetime,          
+                               created_datetime,          
+                               last_login,          
+                               help_recharge,          
+                               bind_mobile,          
+                               mobile,          
+                               template_name,          
+                               memshipdate,          
+                               viptype,
+                               packagename,
+                       			usersource,
+                       			yqr,
+                       			regip,
+                       			regapmac,
+                       			tvdate,
+                       			fieldlock
+     )
+    values(                  #{username},                   
+                       #{version},                   
+                       #{location_id},                   
+                       #{password},                   
+                       #{name},                   
+                       #{points},                   
+                       #{points_converted},                   
+                       #{points_earned},                   
+                       #{status},                   
+                       #{salt},                   
+                       #{gender},                   
+                       #{email},                   
+                       #{modified_datetime},
+                       #{created_datetime},                   
+                       #{last_login},                   
+                       #{help_recharge},                   
+                       #{bind_mobile},                   
+                       #{mobile},                   
+                       #{template_name},                   
+                       #{memshipdate},                   
+                       #{viptype},
+                       #{packagename},
+                       #{usersource},
+                       #{yqr},
+                       <choose>
+                       	<when test="regip!=null and regip!=''">
+                       		'${regip}',
+                       	</when>
+                       	<otherwise>
+                       		null,
+                       	</otherwise>
+                       </choose>                     
+                       #{regapmac},
+                       #{tvdate},
+                       #{fieldlock}                                        
+     )
+
+  </insert>
+  
+  <select id="list" resultType="com.youxin.ymall.entity.AppUser">
+  	select * from t_wifi_user
+        <where>
+                  
+                   <if test="version!=null and version!=''">
+                 and version=#{version}
+            </if>
+                   <if test="location_id!=null and location_id!=''">
+                 and location_id=#{location_id}
+            </if>
+                   <if test="username!=null and username!=''">
+                 and username=#{username}
+            </if>
+                   <if test="password!=null and password!=''">
+                 and password=#{password}
+            </if>
+                   <if test="name!=null and name!=''">
+                 and name=#{name}
+            </if>
+                   <if test="points!=null and points!=''">
+                 and points=#{points}
+            </if>
+                   <if test="points_converted!=null and points_converted!=''">
+                 and points_converted=#{points_converted}
+            </if>
+                   <if test="points_earned!=null and points_earned!=''">
+                 and points_earned=#{points_earned}
+            </if>
+                   <if test="status!=null and status!=''">
+                 and status=#{status}
+            </if>
+                   <if test="salt!=null and salt!=''">
+                 and salt=#{salt}
+            </if>
+                   <if test="gender!=null and gender!=''">
+                 and gender=#{gender}
+            </if>
+                   <if test="email!=null and email!=''">
+                 and email=#{email}
+            </if>
+                   <if test="modified_datetime!=null and modified_datetime!=''">
+                 and modified_datetime=#{modified_datetime}
+            </if>
+                   <if test="created_datetime!=null and created_datetime!=''">
+                 and created_datetime=#{created_datetime}
+            </if>
+                   <if test="last_login!=null and last_login!=''">
+                 and last_login=#{last_login}
+            </if>
+                   <if test="help_recharge!=null and help_recharge!=''">
+                 and help_recharge=#{help_recharge}
+            </if>
+                   <if test="bind_mobile!=null and bind_mobile!=''">
+                 and bind_mobile=#{bind_mobile}
+            </if>
+                   <if test="mobile!=null and mobile!=''">
+                 and mobile=#{mobile}
+            </if>
+                   <if test="template_name!=null and template_name!=''">
+                 and template_name=#{template_name}
+            </if>
+                   <if test="memshipdate!=null and memshipdate!=''">
+                 and memshipdate=#{memshipdate}
+            </if>
+                   <if test="viptype!=null and viptype!=''">
+                 and viptype=#{viptype}
+            </if>
+               </where>
+  </select>
+
+  <select id="searchByUserName" resultType="com.youxin.ymall.entity.AppUser">
+  	select * from t_wifi_user
+        <where>
+                  
+                  
+                   <if test="username!=null and username!=''">
+                 and username like '%${username}%'
+            </if>
+            
+               </where>
+  </select>
+  <select id="getUserBalance" resultType="com.youxin.ymall.domain.UserBalance">
+  	select username,balance,fieldlock from t_wifi_user
+        <where>
+                   username=#{username}
+               </where>
+  </select>
+ <delete id="delete">
+ 	delete from t_wifi_user
+ 	where 	 username=#{username}  </delete>
+ 	
+ <update id="updateUserLocationid" parameterType="com.youxin.ymall.entity.AppUser">
+ 	update  t_wifi_user set location_id=#{location_id} where username=#{username}
+ </update>
+    <update id="updateUserheadImage">
+        update  t_wifi_user set userheadimage=#{userheadimage} where username=#{username}
+    </update>
+    <update id="updateUserTruename">
+        update  t_wifi_user set name=#{name} where username=#{username}
+    </update>
+ <!-- 添加wifi时长 -->
+ <update id="updateUserMemshipdate" parameterType="com.youxin.ymall.entity.AppUser">
+ 	update t_wifi_user set memshipdate = #{memshipdate} where username = #{username}
+ </update>	
+
+ <update id="update" parameterType="com.youxin.ymall.entity.AppUser">
+ 	update  t_wifi_user <set> 
+
+  <if test="version!=null and version!=''">   
+ version=#{ version},
+
+</if>
+  <if test="location_id!=null and location_id!=''">   
+ location_id=#{ location_id},
+
+</if>
+<if test="lastloginip!=null and lastloginip!=''">   
+ lastloginip='${lastloginip}',
+
+</if>
+   <if test="password!=null and password!=''">   
+ password=#{ password},
+
+</if>
+  <if test="name!=null and name!=''">   
+ name=#{ name},
+
+</if>
+  <if test="points!=null and points!=''">   
+ points=#{ points},
+
+</if>
+  <if test="points_converted!=null and points_converted!=''">   
+ points_converted=#{ points_converted},
+
+</if>
+  <if test="points_earned!=null and points_earned!=''">   
+ points_earned=#{ points_earned},
+
+</if>
+  <if test="status!=null and status!=''">   
+ status=#{ status},
+
+</if>
+  <if test="salt!=null and salt!=''">   
+ salt=#{ salt},
+
+</if>
+  <if test="gender!=null and gender!=''">   
+ gender=#{ gender},
+
+</if>
+  <if test="email!=null and email!=''">   
+ email=#{ email},
+
+</if>
+  <if test="modified_datetime!=null and modified_datetime!=''">   
+ modified_datetime=#{ modified_datetime},
+
+</if>
+  <if test="created_datetime!=null and created_datetime!=''">   
+ created_datetime=#{ created_datetime},
+
+</if>
+  <if test="last_login!=null and last_login!=''">   
+ last_login=#{ last_login},
+
+</if>
+  <if test="help_recharge!=null and help_recharge!=''">   
+ help_recharge=#{ help_recharge},
+
+</if>
+  <if test="bind_mobile!=null and bind_mobile!=''">   
+ bind_mobile=#{ bind_mobile},
+
+</if>
+  <if test="mobile!=null and mobile!=''">   
+ mobile=#{ mobile},
+
+</if>
+  <if test="template_name!=null and template_name!=''">   
+ template_name=#{ template_name},
+
+</if>
+  <if test="memshipdate!=null and memshipdate!=''">   
+ memshipdate=#{ memshipdate},
+
+</if>
+  <if test="viptype!=null and viptype!=''">   
+ viptype=#{ viptype},
+
+</if>
+  <if test="packagename!=null and packagename!=''">   
+ packagename=#{ packagename},
+
+</if>
+  <if test="balance!=null and balance!=''">   
+ balance=#{ balance},
+
+</if>
+ 
+  <if test="usersource!=null and usersource!=''">   
+ usersource=#{ usersource}</if>
+</set>
+ 	where 	 username=#{username}  </update>
+ 	<update id="updateUserVipType" >
+ 		update t_wifi_user set viptype=#{viptype}
+ 		where username=#{username}
+ 	</update>
+ 	<update id="updateUserStatus" >
+ 		update t_wifi_user set usertype=#{usertype}
+ 		where username=#{username}
+ 	</update>
+ <update id="modifyPassword" >
+ 	update  t_wifi_user 
+ 	set password=#{password}
+ 	where 	 username=#{username}  </update>
+ <update id="updateUserBalance" parameterType="com.youxin.ymall.domain.UserBalance" >
+ 	update  t_wifi_user 
+ 	set balance=#{balance},user_has_charge=true,fieldlock=#{newlock} 
+ 	where 	 username='${username}' and fieldlock=#{fieldlock} </update>
+ <update id="addUserBalance">
+ 	update  t_wifi_user 
+ 	set balance=balance+#{delbalance},user_has_charge=true 
+ 	where 	 username =#{username} </update>
+ <update id="updateUserInfoById" >
+ 	update  t_wifi_user 
+ 	set username=#{username},password=#{password},viptype=#{viptype}
+ 	where 	 id='${id}' </update>
+ <update id="updateUserBalanceForTransfer" parameterType="com.youxin.ymall.domain.UserBalance" >
+ 	update  t_wifi_user 
+ 	set balance=#{balance},helptotal=helptotal-#{delbalance},helpcounter=helpcounter+1
+ 	where 	 username=#{username} and fieldlock=#{fieldlock}  </update>
+ <update id="updateFieldLock" >
+ 	update  t_wifi_user 
+ 	set fieldlock=#{fieldlock}
+ 	where 	 username=#{username}  </update>
+ <update id="updateUserMembership" >
+ 	update  t_wifi_user 
+ 	set memshipdate=#{memshipdate}
+ 	where 	 username=#{username}  </update>
+ 	 <update id="updateUserTemporarydate" >
+ 	update  t_wifi_user 
+ 	set temporarydate=#{temporarydate}
+ 	where 	 username=#{username}  </update>
+ <update id="updateTVDate" >
+ 	update  t_wifi_user 
+ 	set tvdate=#{tvdate}
+ 	where 	 username=#{username}  </update>
+
+ <update id="addPointsForUser">
+ 	update  t_wifi_user
+ 	set points=points+#{points},points_earned=points_earned+#{points} 	 
+ 	where 	 username=#{username}  </update>
+ <update id="updateAppUserLastLoginWifiIp" 
+ parameterType="com.youxin.ymall.entity.AppUser">
+ 	update  t_wifi_user
+ 	set lastloginip=#{lastloginip}
+ 	 
+ 	where 	 username=#{username}  </update>
+ 	 <update id="updateAppUserLocationId">
+ 	update  t_wifi_user
+ 	set location_id=#{location_id}
+ 	where username=#{username}  </update>
+ <update id="grantUser2Factory" 
+ parameterType="com.youxin.ymall.entity.AppUser">
+ 	update  t_wifi_user
+ 	set location_id=#{factoryId}
+ 	 
+ 	where 	 username=#{username}  </update>
+ <update id="ungrantUserFromFactory" 
+ parameterType="com.youxin.ymall.entity.AppUser">
+ 	update  t_wifi_user
+ 	set location_id=null
+ 	 
+ 	where 	 username=#{username}  </update>
+  <select id="getById" resultType="com.youxin.ymall.entity.AppUser">
+   	select * from t_wifi_user
+  	where  	 username=#{username}  </select>
+  <select id="updateUserCharge" resultType="int">
+   	update t_wifi_user set user_has_charge=#{userhascharge}
+  	where  	 username=#{username}   </select>
+  <select id="updateUserHasBuy" resultType="int">
+   	update t_wifi_user set user_has_buypackage=#{user_has_buypackage}
+  	where  	 username=#{username}   </select>
+  <select id="updateUserHasyqBouns" resultType="int">
+   	update t_wifi_user set user_has_yqbouns=#{user_has_yqbouns}
+  	where  	 username=#{username}   </select>
+  <select id="getUserListByFactoryId" resultType="string">
+   	select username from t_wifi_user
+  	where  	 location_id in (${factoryId})   </select>
+  <select id="getUserListByLocationId" resultType="string">
+   	select username from t_wifi_user
+  	where  	 location_id=#{location_id} and username!=#{username}
+  	order by random() limit 50   </select>
+  <select id="getAllUserList" resultType="string">
+   	select username from t_wifi_user
+  	   </select>
+  <select id="getWifiDateCount" resultType="int">
+   	select count(*) from t_wifi_user
+   	where (memshipdate-now()) between  interval '${start} day' and interval '${end} day'
+  	   </select>
+  <select id="getStatisticsCountWithFactory" resultType="com.youxin.ymall.entity.StaWifiuser">
+   	select    	  	
+   	aa.oname as sta_wifiuser_factoryname,aa.fugairs,aa.factory_roomnum,
+   	case when aa.oid is null then 0 else aa.oid end as sta_wifiuser_factoryid,
+   	aa.regcount as sta_wifiuser_regcount,
+   	dd.sta_wifiuser_regcount as sta_wifiuser_regcount_yesterday,
+ee.sta_wifiuser_regcount as sta_wifiuser_regcount_lastdayoflastmonth,
+ss.sta_wifiuser_regcount as sta_wifiuser_regcount_lastweek,
+bb.wifipaycount as sta_wifiuser_wifipaycount, 
+dd.sta_wifiuser_wifipaycount as sta_wifiuser_wifipaycount_yesterday,
+ee.sta_wifiuser_wifipaycount as sta_wifiuser_wifipaycount_lastdayoflastmonth,
+ss.sta_wifiuser_wifipaycount as sta_wifiuser_wifipaycount_lastweek,
+cc.tvcount sta_wifiuser_tvcount,
+dd.sta_wifiuser_tvcount sta_wifiuser_tvcount_yesterday,
+ee.sta_wifiuser_tvcount sta_wifiuser_tvcount_lastdayoflastmonth,
+ss.sta_wifiuser_tvcount sta_wifiuser_tvcount_lastweek,
+ff.applogincount sta_applogincount,
+dd.sta_applogincount sta_applogincount_yesterday,
+ee.sta_applogincount sta_applogincount_lastdayoflastmonth,
+ss.sta_applogincount sta_applogincount_lastweek,
+gg.portallogincount sta_portallogincount,
+dd.sta_portallogincount sta_portallogincount_yesterday,
+ee.sta_portallogincount sta_portallogincount_lastdayofmonth,
+ss.sta_portallogincount sta_portallogincount_lastweek,
+hh.tvusercount sta_tvusercount,
+hh.tvclickcount sta_tvclickcount,
+ii.sta_wifiuser_registerneverpaywifinum,
+jj.sta_wifiuser_wifipayexpirenum,
+kk.sta_wifiuser_mianfeiwifinopaynum,
+ll.sta_wifiuser_yesterdaylogiwifinnopaynum,
+mm.sta_wifiuser_canwifi_num,
+nn.sta_wifiuser_wifivipmianfei_num,
+oo.sta_wifiuser_cantv_num,
+pp.sta_wifiuser_tvvipmianfei_num,
+qq.sta_wifiuser_tvsong_num,
+rr.sta_wifiuser_zaixiannum
+from 
+(
+select count(*) regcount  ,b.oname,b.oid,b.fugairs,b.factory_roomnum
+from t_wifi_factory b left join  t_wifi_user_${now} a on a.location_id=b.oid
+group by b.oname,b.oid
+) aa left  join
+(
+select count(*) wifipaycount  ,b.oname,b.oid
+from t_wifi_user_${now} a left join t_wifi_factory b on a.location_id=b.oid
+where a.memshipdate>'${now}' and a.user_has_buypackage=true and (a.viptype!='3' or a.viptype is null)
+group by b.oname,b.oid
+) bb on aa.oid=bb.oid left join 
+
+(
+select count(*) tvcount ,b.oname,b.oid
+from t_wifi_user_${now} a left join t_wifi_factory b on a.location_id=b.oid
+where a.tvdate>'${now}'  and a.user_has_buypackage=true and (a.user_tv_viptype!='FREE' or a.user_tv_viptype is null)
+group by b.oname,b.oid)
+ cc on aa.oid=cc.oid
+left join 
+(select * from t_sta_wifiuser
+where sta_wifiuser_stadate='${yesterday}'
+) dd on aa.oid=dd.sta_wifiuser_factoryid
+left join 
+(select * from t_sta_wifiuser
+where sta_wifiuser_stadate='${lastdayoflastmonth}'
+) ee on aa.oid=ee.sta_wifiuser_factoryid
+left join 
+(select * from t_sta_wifiuser
+where sta_wifiuser_stadate='${lastweek}'
+) ss on aa.oid=ss.sta_wifiuser_factoryid
+left join 
+(select count(*) applogincount,factoryid from 
+	(select count(*) applogincount,factoryid from t_wifi_autlog
+	where date(odate)='${now}' and autway='App认证' and result='SUCCESS'
+	group by factoryid,username) zz
+group by factoryid
+) ff on aa.oid=ff.factoryid
+left join 
+(select count(*) portallogincount,factoryid from 
+	(select count(*) portallogincount,factoryid from t_wifi_autlog
+	where date(odate)='${now}' and autway='Portal认证' and result='SUCCESS'
+	group by factoryid,username) zz
+group by factoryid
+) gg on aa.oid=gg.factoryid
+left join 
+(select count(*) tvclickcount,count(distinct tv_sta_username) as tvusercount,
+tv_sta_factoryid from t_tv_sta
+where date(tv_sta_stadate)='${now}'
+group by tv_sta_factoryid
+) hh on aa.oid=hh.tv_sta_factoryid 
+left join
+(
+select count(*) as sta_wifiuser_registerneverpaywifinum ,b.oid
+from t_wifi_factory b left join  t_wifi_user_${now} a  on a.location_id=b.oid
+where (a.user_has_buypackage=false or a.user_has_buypackage is null) and (a.viptype!='3' or a.viptype is null)
+group by b.oid
+) ii on aa.oid=ii.oid 
+left join 
+(
+select count(*) as sta_wifiuser_wifipayexpirenum ,b.oid
+from t_wifi_factory b left join  t_wifi_user_${now} a  on a.location_id=b.oid
+where (a.memshipdate is null or  a.memshipdate>'${now}') and (a.viptype!='3' or a.viptype is null)
+group by b.oid
+) jj on aa.oid=jj.oid 
+left join 
+(
+select count(*) as sta_wifiuser_mianfeiwifinopaynum ,b.oid
+from t_wifi_factory b left join  t_wifi_user_${now} a   on a.location_id=b.oid
+where a.memshipdate>'${now}' and a.user_has_buypackage=false and (a.viptype!='3' or a.viptype is null)
+group by b.oid
+) kk on aa.oid=kk.oid 
+left join 
+(
+select count(*) as sta_wifiuser_yesterdaylogiwifinnopaynum ,b.oid
+from t_wifi_factory b left join  t_wifi_user_${now} a   on a.location_id=b.oid
+where date(a.last_login)='${now}' and (a.user_has_buypackage=false or a.user_has_buypackage is null) and (a.viptype!='3' or a.viptype is null)
+group by b.oid
+) ll on aa.oid=ll.oid 
+left join 
+(
+select count(*) as sta_wifiuser_canwifi_num ,b.oid
+from t_wifi_factory b left join  t_wifi_user_${now} a   on a.location_id=b.oid
+where a.memshipdate > '${now}' or  a.viptype='3'
+group by b.oid
+) mm on aa.oid=mm.oid 
+left join 
+(
+select count(*) as sta_wifiuser_wifivipmianfei_num ,b.oid
+from t_wifi_factory b left join  t_wifi_user_${now} a   on a.location_id=b.oid
+where a.viptype='3'
+group by b.oid
+) nn on aa.oid=nn.oid 
+left join 
+(
+select count(*) as sta_wifiuser_cantv_num ,b.oid
+from t_wifi_factory b left join  t_wifi_user_${now} a   on a.location_id=b.oid
+where a.tvdate > '${now}'  or  a.user_tv_viptype='FREE'
+group by b.oid
+) oo on aa.oid=oo.oid 
+left join 
+(
+select count(*) as sta_wifiuser_tvvipmianfei_num ,b.oid
+from t_wifi_factory b left join  t_wifi_user_${now} a   on a.location_id=b.oid
+where a.user_tv_viptype='FREE'
+group by b.oid
+) pp on aa.oid=pp.oid 
+left join 
+(
+select count(*) as sta_wifiuser_tvsong_num ,b.oid
+from t_wifi_factory b left join  t_wifi_user_${now} a   on a.location_id=b.oid
+where a.tvdate > '${now}' and a.user_has_buypackage=false and (a.user_tv_viptype!='FREE' or a.user_tv_viptype is null)
+group by b.oid
+) qq on aa.oid=qq.oid 
+left join 
+(
+select count(distinct username) as sta_wifiuser_zaixiannum ,b.factoryid
+from t_wifi_autlog_${now} b 
+group by b.factoryid
+) rr on aa.oid=rr.factoryid 
+
+
+
+</select>
+  <select id="getNoWifiDateCount" resultType="int">
+   	select count(*) from t_wifi_user
+   	where (memshipdate-now()) &lt; interval '0 day'
+  	   </select>
+<select id="select" parameterType="com.sslkg.domain.MyBatisWhere"
+		resultType="com.youxin.ymall.entity.AppUser">
+		select * from t_wifi_user
+		<where>
+			<foreach collection="wheres" item="where" separator="or">
+				<trim prefix="(" prefixOverrides="and" suffix=")">
+					<foreach collection="where.conditions" separator="and" item="condition">
+						<choose>
+							<when test="condition.singleValue">
+								<choose>
+									<when test="condition.operator.equals('gt')">
+										${condition.field} &gt;  '${condition.value}'
+									</when>
+									<when test="condition.operator.equals('lt')">
+										${condition.field} &lt;  '${condition.value}'
+									</when>
+									<otherwise>
+										${condition.field} ${condition.operator}  #{condition.value}
+									</otherwise>
+								</choose>
+							</when>
+							
+							<when test="condition.listValue">
+								${condition.field} ${condition.operator}
+				                  <foreach close=")" collection="condition.value" item="listItem" open="(" separator=",">
+				                    #{listItem}
+				                  </foreach>
+							</when>
+						</choose>						
+					</foreach>
+				</trim>
+			</foreach>
+		</where>
+		order by id desc
+	</select>
+	
+	<select id="selectWithFactory" parameterType="com.sslkg.domain.MyBatisWhere"
+		resultType="com.youxin.ymall.domain.AppUserQuery">
+		select a.*,b.oname as factoryname from t_wifi_user a 
+		left join t_wifi_factory b on a.location_id=b.oid
+		<where>
+			<foreach collection="wheres" item="where" separator="or">
+				<trim prefix="(" prefixOverrides="and" suffix=")">
+					<foreach collection="where.conditions" separator="and" item="condition">
+						<choose>
+							<when test="condition.singleValue">
+								<choose>
+									<when test="condition.operator.equals('gt')">
+										${condition.field} &gt;  '${condition.value}'
+									</when>
+									<when test="condition.operator.equals('lt')">
+										${condition.field} &lt;  '${condition.value}'
+									</when>
+									<when test="condition.operator.equals('like')">
+										${condition.field} like  '%${condition.value}%'
+									</when>
+									<otherwise>
+										${condition.field} ${condition.operator}  #{condition.value}
+									</otherwise>
+								</choose>
+							</when>
+							
+							<when test="condition.listValue">
+								${condition.field} ${condition.operator}
+				                  <foreach close=")" collection="condition.value" item="listItem" open="(" separator=",">
+				                    #{listItem}
+				                  </foreach>
+							</when>
+						</choose>						
+					</foreach>
+				</trim>
+			</foreach>
+		</where>
+		order by id desc
+	</select>
+	<select id="query" 
+		resultType="com.youxin.ymall.domain.AppUserQuery">
+		select a.*,b.oname as factoryname from t_wifi_user a 
+		left join t_wifi_factory b on a.location_id=b.oid
+		<where>
+			
+			<foreach collection="jqQuery.query" separator="AND" item="condition">
+				 
+				
+				${condition.key} ${condition.operator} ${condition.value}
+			</foreach>
+			
+		</where>
+		order by ${jqQuery.orderfield} ${jqQuery.ordertype}
+	</select>
+	<select id="queryfornopage" 
+		resultType="com.youxin.ymall.domain.AppUserQuery">
+		select a.*,b.oname as factoryname from t_wifi_user a 
+		left join t_wifi_factory b on a.location_id=b.oid
+		<where>
+			
+			<foreach collection="jqQuery.query" separator="AND" item="condition">
+				 
+				
+				${condition.key} ${condition.operator} ${condition.value}
+			</foreach>
+			
+		</where>
+		order by ${jqQuery.orderfield} ${jqQuery.ordertype}
+		limit ${limit} offset ${offset}
+	</select>
+	<select id="count" 
+		resultType="int">
+		select count(1) from t_wifi_user a 
+		left join t_wifi_factory b on a.location_id=b.oid
+		<where>
+			
+			<foreach collection="jqQuery.query" separator="AND" item="condition">
+				 
+				
+				${condition.key} ${condition.operator} ${condition.value}
+			</foreach>
+		</where>
+	</select>
+	<select id="commonQuery" parameterType="com.sslkg.domain.CommonWhere"
+		resultType="com.youxin.ymall.domain.AppUserQuery">
+		select a.*,b.oname as factoryname from t_wifi_user a 
+		left join t_wifi_factory b on a.location_id=b.oid
+		<where>			
+		<trim prefixOverrides="AND">
+			<if test="hasConditionsWhere">
+			<trim prefixOverrides="AND">
+			<trim prefixOverrides="OR">
+				<foreach collection="conditions" item="where">
+				<choose>
+					<when test="where.con=='AND'">
+						AND 
+						<trim prefix=" (" prefixOverrides="AND" suffix=") ">
+						<foreach collection="where.conditions" separator="AND" item="condition">
+							<choose>
+								<when test="condition.conditiontype=='singlevalue'">
+									${condition.field} ${condition.operator}  '${condition.value}'
+								</when>
+								<when test="condition.conditiontype=='between'">
+									${condition.field} between  '${condition.minvalue}'
+									 and '${condition.maxvalue}'			
+								</when>
+								<otherwise>
+								${condition.field} ${condition.operator}  '${condition.value}'
+								</otherwise>
+							</choose>
+						
+						</foreach>
+						</trim>	
+					</when>
+					<when test="where.con=='OR'">
+						OR 
+						<trim prefix=" (" prefixOverrides="AND" suffix=") ">
+							<foreach collection="where.conditions" separator="AND" item="condition">
+							<choose>
+								<when test="condition.conditiontype=='singlevalue'">
+									${condition.field} ${condition.operator}  '${condition.value}'
+								</when>
+								<when test="condition.conditiontype=='between'">
+									${condition.field} between  '${condition.minvalue}'
+									 and '${condition.maxvalue}'			
+								</when>
+								<otherwise>
+								${condition.field} ${condition.operator}  '${condition.value}'
+								</otherwise>
+							</choose>
+							</foreach>
+						</trim>	
+					</when>
+					<otherwise>
+						AND 
+						<trim prefix=" (" prefixOverrides="AND" suffix=") ">
+						<foreach collection="where.conditions" separator="AND" item="condition">
+						<choose>
+								<when test="condition.conditiontype=='singlevalue'">
+									${condition.field} ${condition.operator}  '${condition.value}'
+								</when>
+								<when test="condition.conditiontype=='between'">
+									${condition.field} between  '${condition.minvalue}'
+									 and '${condition.maxvalue}'			
+								</when>
+								<otherwise>
+								${condition.field} ${condition.operator}  '${condition.value}'
+								</otherwise>
+							</choose>
+						</foreach>
+						</trim>						
+					
+					</otherwise>
+				</choose>				
+				
+			</foreach>
+			</trim>
+			</trim>
+			</if>
+	
+			<if test="hasFixWhere">
+				AND 
+				<foreach collection="fixWhere.conditions" separator="AND" item="condition">
+						<choose>
+								<when test="condition.conditiontype=='singlevalue'">
+									${condition.field} ${condition.operator}  '${condition.value}'
+								</when>
+								<when test="condition.conditiontype=='between'">
+									${condition.field} between  '${condition.minvalue}'
+									 and '${condition.maxvalue}'			
+								</when>
+								<otherwise>
+								${condition.field} ${condition.operator}  '${condition.value}'
+								</otherwise>
+							</choose>
+				</foreach>
+			</if>
+			</trim>	
+		</where>
+		order by id desc
+	</select>
+	
+  <select id="listwithfactory" resultMap="BaseResult">
+  	select a.*,b.oname as factoryname from t_wifi_user a left join t_wifi_factory b on a.location_id=b.oid
+  	 order by id desc
+  	</select>
+
+  <select id="queryUsersByFactoryid" resultType="com.youxin.luosiding.entity.MyServiceNetFactoryUserEntity">
+  	select a.username,a.balance,a.created_datetime as registerdate,
+	a.viptype as userpaytype,a.points,a.memshipdate as wifidate,a.tvdate as tvdate,
+	a.last_login as lastlogindate
+	from t_wifi_user a where location_id=#{factoryid} and username like '%${username}%' order by created_datetime desc
+  </select>
+  
+<select id="getStaticsticsTransDataForFactory" resultType="com.youxin.ymanage.entity.Wifioper">
+select * from 
+(
+select aaa.oname sta_wifioper_factoryname,aaa.oid sta_wifioper_factoryid, aaa.factory_status, 
+bbb.*,ccc.*,ddd.*,eee.*,fff.*,ggg.*,hhh.*,iii.*,jjj.*,kkk.*
+from t_wifi_factory aaa 
+left join 
+( 
+	select * from  
+	(
+
+		select 
+    	a.factoryid factoryid,
+		count(a.*) as sta_wifioper_ordernum,
+    	sum(a.amount) sta_wifioper_totalmoney,
+		sum(a.paymoney) sta_wifioper_balancepay,
+		sum(a.points) sta_wifioper_goldpay 
+		from t_mall_order a 
+	 	inner join t_mall_packagegroup b on a.giftid=b.groupid
+		where  to_char(a.createddate,'YYYY-MM-DD')='${yyyy_mm_dd}' and a.orderstatus='SUCCESS'
+		group by a.factoryid
+
+	) aa left join 
+	(
+
+		select 
+		a.factoryid wifi_factoryid,
+	  	count(a.*) sta_wifioper_wifi,
+		sum(a.amount) sta_wifioper_wifitotalpay,
+		sum(a.paymoney) sta_wifioper_wifipay,
+		sum(a.points) sta_wifioper_wifigoldpay 
+	  	from t_mall_order a 
+		inner join t_mall_packagegroup b on a.giftid=b.groupid
+		where to_char(a.createddate,'YYYY-MM-DD')='${yyyy_mm_dd}' and a.orderstatus='SUCCESS' 
+		and (b.otype='PACKAGE_WIFI' or b.groupid in (40,41,42,43,44))
+		group by a.factoryid
+
+	) bb on aa.factoryid=bb.wifi_factoryid 
+	left join 
+	(
+		select 
+		a.factoryid tv_factoryid,
+		count(a.*) sta_wifioper_tv,
+		sum(a.amount) sta_wifioper_tvtotalpay,
+		sum(a.paymoney) sta_wifioper_tvpay,
+		sum(a.points) sta_wifioper_tvgoldpay 
+		from t_mall_order a 
+		inner join t_mall_packagegroup b on a.giftid=b.groupid
+		where to_char(a.createddate,'YYYY-MM-DD')='${yyyy_mm_dd}' and a.orderstatus='SUCCESS' and b.otype='PACKAGE_TV'
+		group by a.factoryid
+	) cc on aa.factoryid=cc.tv_factoryid
+	left join 
+	(
+		select 
+		a.factoryid wifitv_factoryid,
+		count(a.*) sta_wifioper_wifitv,
+		sum(a.amount) sta_wifioper_wifitvtotalpay,
+		sum(a.paymoney) sta_wifioper_wifitvpay,
+		sum(a.points) sta_wifioper_wifitvgoldpay 
+		from t_mall_order a 
+		inner join t_mall_packagegroup b on a.giftid=b.groupid
+		where to_char(a.createddate,'YYYY-MM-DD')='${yyyy_mm_dd}' and a.orderstatus='SUCCESS' 
+		and b.otype='PACKAGE_WIFITV' and b.groupid not in (40,41,42,43,44)
+		group by a.factoryid
+	) dd on aa.factoryid=dd.wifitv_factoryid
+
+) bbb on aaa.oid=bbb.factoryid
+LEFT JOIN
+(
+	select 
+	count(*) sta_wifioper_alipaynum,
+	a.factoryid alipay_factoryid,
+	sum(amount) sta_wifioper_alipay 
+	from t_pay_chargeorder a 
+	where paytype='ALIPAY' and  to_char(a.callbackdate,'YYYY-MM-DD')='${yyyy_mm_dd}'
+	group by a.factoryid
+) ccc on aaa.oid=ccc.alipay_factoryid
+left join
+(
+	select 
+	count(*) sta_wifioper_weixinnum,
+	a.factoryid weixin_factoryid,
+	sum(amount) sta_wifioper_weixin 
+	from t_pay_chargeorder a 
+	where paytype='WEIXIN' and to_char(a.callbackdate,'YYYY-MM-DD')='${yyyy_mm_dd}'
+	group by a.factoryid
+) ddd on aaa.oid=ddd.weixin_factoryid
+left join
+(
+	select 
+	count(*) sta_wifioper_cardnum,
+	a.factoryid chargecard_factoryid,
+	sum(cardmoney) sta_wifioper_card 
+	from t_pay_chargecard a 
+	where to_char(a.usedate,'YYYY-MM-DD')='${yyyy_mm_dd}'
+	group by a.factoryid
+) eee on aaa.oid=eee.chargecard_factoryid
+left join
+(
+	select 
+	count(*) sta_wifioper_wificostnum_weixin,
+	a.wifiuser_factoryid,
+	COALESCE(sum(b.wificost),0) as sta_wifioper_phonewificost_weixin
+	from t_app_packageorder a 
+	inner join t_app_package_phonerecharge b on a.packageid=b.packageid
+	where to_char(a.createddate,'YYYY-MM-DD')='${yyyy_mm_dd}' and a.threepayclass='weixin'
+	group by a.wifiuser_factoryid
+) fff on aaa.oid=fff.wifiuser_factoryid
+left join
+(
+	select 
+	count(*) sta_wifioper_wificostnum_aplipay,
+	a.wifiuser_factoryid,
+	COALESCE(sum(b.wificost),0) as sta_wifioper_phonewificost_aplipay
+	from t_app_packageorder a 
+	inner join t_app_package_phonerecharge b on a.packageid=b.packageid
+	where to_char(a.createddate,'YYYY-MM-DD')='${yyyy_mm_dd}' and a.threepayclass='aplipay'
+	group by a.wifiuser_factoryid
+) ggg on aaa.oid=ggg.wifiuser_factoryid
+left join
+(
+	select 	
+	count(*) sta_wifioper_earnnum,
+	COALESCE(sum(a.amount),0) as sta_wifioper_earnpoint,
+	b.pyq_user_factoryid 
+	from t_app_pointhistory a
+	left join t_pyq_user b
+	on a.username=b.pyq_user_username
+	where point_type in('bigwifi','有米应用积分墙')
+	and status='SUCCESS'
+	and to_char(a.created_datetime,'YYYY-MM-DD')='${yyyy_mm_dd}'
+	group by pyq_user_factoryid
+) hhh on aaa.oid=hhh.pyq_user_factoryid
+left join
+(
+	select 
+   	a.factoryid factoryid,
+   	COALESCE(sum(a.threepay),0) as sta_wifioper_threepay
+	from t_mall_order a 
+	where  to_char(a.modifieddate,'YYYY-MM-DD')='${yyyy_mm_dd}' and a.orderstatus='SUCCESS'
+	group by a.factoryid
+) iii on aaa.oid=iii.factoryid
+left join
+(
+	select 	
+	count(*) sta_wifioper_guanzhu1nnum,
+	COALESCE(sum(a.amount),0) as sta_wifioper_guanzhu1earnpoint,
+	b.pyq_user_factoryid 
+	from t_app_pointhistory a
+	left join t_pyq_user b
+	on a.username=b.pyq_user_username
+	where point_type='bigwifi'
+	and status='SUCCESS'
+	and to_char(a.created_datetime,'YYYY-MM-DD')='${yyyy_mm_dd}'
+	group by pyq_user_factoryid
+) jjj on aaa.oid=jjj.pyq_user_factoryid
+left join
+(
+	select 	
+	count(*) sta_wifioper_appdownnnum,
+	COALESCE(sum(a.amount),0) as sta_wifioper_appdownearnpoint,
+	b.pyq_user_factoryid 
+	from t_app_pointhistory a
+	left join t_pyq_user b
+	on a.username=b.pyq_user_username
+	where point_type='有米应用积分墙'
+	and status='SUCCESS'
+	and to_char(a.created_datetime,'YYYY-MM-DD')='${yyyy_mm_dd}'
+	group by pyq_user_factoryid
+) kkk on aaa.oid=kkk.pyq_user_factoryid
+) searchtable 
+${searchsql}
+</select>
+
+
+ <select id="getRegUserNotBuy" resultType="com.youxin.ymall.domain.AppUserForNotBuy">
+ 		select * from 
+ 		(
+			select aa.*,bb.oname factoryname,bb.paytype,bb.factory_status from (
+			select * from t_wifi_user a
+			where user_has_buypackage=false and viptype='1' and memshipdate &lt; now() and
+			username not in (select genjin_user_username
+			from t_genjin_user where genjin_user_status !='成功')
+			) aa left join t_wifi_factory bb on aa.location_id=bb.oid
+		) searhtable
+			<where>
+				 <foreach collection="jqQuery.query" separator="" item="condition">
+				AND ${condition.key} ${condition.operator} ${condition.value}
+			</foreach>
+		</where>
+		order by ${jqQuery.orderfield} ${jqQuery.ordertype} nulls last
+	</select>
+	<select id="getOutdateNotBuy" resultType="com.youxin.ymall.domain.AppUserForNotBuy">
+		select * from 
+ 		(
+			select aa.*,bb.oname factoryname,bb.paytype,bb.factory_status from (
+			select * from t_wifi_user a
+			where user_has_buypackage=true and memshipdate &lt; now() and viptype='1' and
+			username not in (
+				select
+				 genjin_user_username
+				 from t_genjin_user
+				 where genjin_user_date &gt; (now()-interval '7 day') or 
+				   genjin_user_status !='成功'			
+			)
+			and location_id not in (select oid from t_wifi_factory where paytype='统付')
+			) aa left join t_wifi_factory bb on aa.location_id=bb.oid
+		) searhtable	
+		<where>			
+			
+			<foreach collection="jqQuery.query" separator="" item="condition">
+				AND ${condition.key} ${condition.operator} ${condition.value}
+			</foreach>
+		</where>
+		order by ${jqQuery.orderfield} ${jqQuery.ordertype} nulls last
+	</select>
+	<select id="getallgenjin" resultType="com.youxin.ymanage.entity.GenjinNotBuyUser">
+	select * from (
+		select a.*,c.oname as factoryname from t_genjin_user a
+		left join t_wifi_user b on a.genjin_user_username=b.username
+		left join t_wifi_factory c on b.location_id=c.oid
+	) searchtable
+		<where>			
+			<foreach collection="jqQuery.query" separator="AND" item="condition">				 
+				${condition.key} ${condition.operator} ${condition.value}
+			</foreach>
+		</where>
+		order by ${jqQuery.orderfield} ${jqQuery.ordertype} nulls last
+	</select>
+	
+	<select id="getGenJinUserById" resultType="com.youxin.ymanage.entity.GenjinNotBuyUser">
+		select * from t_genjin_user where genjin_user_id=#{id}
+	</select>
+	
+<!-- 查询某个时间段wifi过期的用户 -->	
+<select id="queryWifiOutdateUserByTime" resultType="com.youxin.ymall.entity.AppUser">
+	select * from t_wifi_user where user_tv_viptype='PAY' and user_has_buypackage=true and 
+	 memshipdate > '${startdate}' and '${enddate}' > memshipdate
+</select>
+	<update id="consumeBalance">
+		update t_wifi_user set
+		balance=balance-#{balance}
+		where username=#{username}
+	</update>
+	<update id="consumePoints">
+		update t_wifi_user set points=points-#{points},
+			points_converted=points_converted+#{points}
+		where username=#{username}
+	</update>
+    <select id="countbuyAmountByDate" resultType="double">
+        SELECT COALESCE(SUM(amount),0) as
+        helpbuy_amount FROM t_mall_order WHERE username =#{username}
+        AND orderstatus='SUCCESS' AND createddate BETWEEN #{start_date}
+        AND #{end_date}
+    </select>
+    <select id="countChildAccountAmountByDate" resultType="double">
+        SELECT COALESCE(SUM(amount),0) as
+        helpbuy_amount FROM t_mall_order WHERE child_account =#{child_account}
+        AND orderstatus='SUCCESS' AND createddate BETWEEN #{start_date}
+        AND #{end_date}
+    </select>
+    <select id="countbuyAmountByType" resultType="double">
+        SELECT COALESCE(SUM(amount),0) as
+        helpbuy_amount FROM t_mall_order WHERE username =#{username}and
+        buytype=#{buytype} AND orderstatus='SUCCESS' AND createddate BETWEEN #{start_date}
+		AND #{end_date}
+    </select>
+    <select id="countChildAccountAmountByType" resultType="double">
+        SELECT COALESCE(SUM(amount),0) as
+        helpbuy_amount FROM t_mall_order WHERE child_account =#{child_account}and
+        buytype=#{buytype} AND orderstatus='SUCCESS' AND createddate BETWEEN #{start_date}
+        AND #{end_date}
+    </select>
+    <select id="countHelpbuyAmount" resultType="double">
+        SELECT COALESCE(SUM(amount),0) as
+        helpbuy_amount FROM t_mall_order WHERE username =#{username}and
+        buytype='HELPBUY' AND orderstatus='SUCCESS'
+    </select>
+    <select id="countChildAccountHelpbuyAmount" resultType="double">
+        SELECT COALESCE(SUM(amount),0) as
+        helpbuy_amount FROM t_mall_order WHERE child_account =#{child_account}and
+        buytype='HELPBUY' AND orderstatus='SUCCESS'
+    </select>
+    <select id="countHelpbuyAmountByDate" resultType="double">
+        SELECT COALESCE(SUM(amount),0) as
+        helpbuy_amount FROM t_mall_order WHERE username =#{username}and
+        buytype='HELPBUY' AND orderstatus='SUCCESS' AND createddate BETWEEN #{start_date}
+		AND #{end_date}
+    </select>
+    <select id="countHelpbuyAccountnum" resultType="int">
+        SELECT COUNT(distinct friend_username) as
+        helpbuyAccount_num FROM t_mall_order WHERE username =#{username}and
+        buytype='HELPBUY' AND orderstatus='SUCCESS' AND createddate BETWEEN #{start_date}
+		AND #{end_date}
+    </select>
+    <select id="countHelpbuyDays" resultType="int">
+        SELECT  COALESCE(SUM(b.packagetime),0) FROM (SELECT
+        giftid
+        FROM
+        t_mall_order
+        WHERE
+        username = #{username}
+        AND orderstatus = 'SUCCESS' AND buytype='HELPBUY'
+        AND createddate BETWEEN #{start_date}
+        AND #{end_date})a LEFT JOIN t_mall_packagegroup b  on a.giftid = b.groupid
+    </select>
+</mapper>
